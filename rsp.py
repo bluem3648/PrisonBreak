@@ -10,8 +10,8 @@ def judge(player, computer):
         return "무승부"
     wins = {"가위" : "보", "바위" : "가위", "보" : "바위"}
     if wins[player] == computer:
-        return "승리!"
-    return "패배..."
+        return "승리"
+    return "패배"
 
 #가위 바위 보
 def play():
