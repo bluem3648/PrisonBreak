@@ -16,19 +16,19 @@ title = """
 ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
 """
 
-clear()
-print(title)
-print("  [W] 게임 시작")
-print("  [S] 종료")
-print()
+def show_title():
+    clear()
+    print(title)
+    print("  [W] 게임 시작")
+    print("  [S] 종료")
+    print()
 
-while True:
-    key = input("  > ").strip().lower()
-    if key == "w":
-        clear()
-        print("  게임을 시작합니다...")
-        break
-    elif key == "s":
-        clear()
-        print("  게임을 종료합니다.")
-        exit()
+    while True:
+        key = input("  > ").strip().lower()
+        if key == "w":
+            clear()
+            break
+        elif key == "s":
+            clear()
+            print("  게임을 종료합니다.")
+            exit()

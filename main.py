@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "minigame"))
+
+from clear import clear
+from title import show_title
 import turtle as t
-import random
 import blackJack
-import numBaseball
 import rsp
 import hangman
-
-t.shape("turtle")
-t.penup()
-t.speed(0)
 
 current_stage = 1
 is_loading = False        
@@ -20,15 +20,16 @@ has_desk_ch3 = has_rope_ch3 = has_recorder_ch3 = has_paper_ch3 = False
 has_file_ch4 = has_shovel_ch4 = has_cloth_ch4 = has_blackjack_ch4 = False
 
 COORD_DOOR = (0, 150)
-COORD_A = (150, 150)    
-COORD_B = (-150, -150)  
-COORD_C = (150, -150)   
-COORD_D = (-150, 150)      
+COORD_A = (150, 150)
+COORD_B = (-150, -150)
+COORD_C = (150, -150)
+COORD_D = (-150, 150)
 
-screen = t.Screen()
+screen = None
 
 def draw_map():
     global is_loading
+    clear()
     is_loading = True
     t.hideturtle()
     t.clear()
@@ -94,7 +95,7 @@ def check_interaction():
                     print("\n[엔딩: 뒤틀린 현실]"); print("주인공은 분노를 내뱉으며 끝까지 피해자를 사기꾼이라 몰아세웠다. 시스템은 그의 현실 인식을 '실패'로 규정한다.")
                     print("더욱 깊은 교화 단계가 시작된다. 더 어둡고 복잡한, 끝없는 기억 복구의 미궁 속으로 주인공은 끌려 들어간다.")
             elif current_stage == 4:
-                if blackJack.play(): has_blackjack_ch4 = True
+                if blackJack.play() == "승리": has_blackjack_ch4 = True
             else:
                 target_pwd = None
                 if current_stage == 1 and has_desk_ch1 and has_bed_ch1 and has_closet_ch1 and has_drawer_ch1: target_pwd = "7294"
@@ -141,6 +142,13 @@ def up(): t.sety(t.ycor() + 20); check_interaction()
 def down(): t.sety(t.ycor() - 20); check_interaction()
 def left(): t.setx(t.xcor() - 20); check_interaction()
 def right(): t.setx(t.xcor() + 20); check_interaction()
+
+show_title()
+
+screen = t.Screen()
+t.shape("turtle")
+t.penup()
+t.speed(0)
 
 screen.listen()
 enable_keys()
