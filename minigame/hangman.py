@@ -66,9 +66,9 @@ HANGMAN = [
 
 ANSWER = "sangmyung"
 
-def play():
+def play(word=None):
     print("\n=== 행맨 ===")
-    answer = ANSWER
+    answer = word if word else ANSWER
     guessed = set()
     lives = 6
 
